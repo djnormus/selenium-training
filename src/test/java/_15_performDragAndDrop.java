@@ -4,15 +4,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
 
-import java.util.List;
 
+public class _15_performDragAndDrop {
 
-public class B_basicMethods_2 {
-
-    // VIDEO # 15
-    public static String browserType = "chrome";
+    // VIDEO # 27
+    public static String browserType = "firefox";
     public static WebDriver driver;
 
 
@@ -37,30 +36,25 @@ public class B_basicMethods_2 {
         }
 
         // GET URL
-        driver.get("https://www.saucedemo.com/");
+        driver.get("https://jqueryui.com/droppable/");
 
         // MAXIMIZE WINDOWS
         driver.manage().window().maximize();
 
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-        driver.findElement(By.id("login-button")).click();
+        // 3- SWITCH TO IFRAME --> BY webelEment
+        WebElement frame1 = driver.findElement(By.xpath("//iframe[@class='demo-frame'] "));
+        driver.switchTo().frame(frame1);
 
-        // GET ELEMENTS (PLURIEL)
-        List<WebElement> webElementsList = driver.findElements(By.xpath("//div[@class='inventory_list']")); // //div[@class='inventory_list']
-        System.out.println("List : " + webElementsList);
+        WebElement drag = driver.findElement(By.id("draggable"));
+        WebElement drop = driver.findElement(By.id("droppable"));
 
-        // GET WINDOW HANDLE
-        // VOIR AUTRE TUTO POUR LE WINDOW HANDLE
-        driver.navigate().to("");
-        String windowhandle = driver.getWindowHandle();
-        System.out.println(windowhandle);
+        // INSTANTIATE ACTION OBJECT
+        Actions action = new Actions(driver);
 
+        // DRAG & DROP
+        action.dragAndDrop(drag, drop).perform();
 
-
-
-
-
+        //driver.quit();
     }
 
 }

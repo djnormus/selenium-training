@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 
-public class w_javaScriptExecutor {
+public class _25_javaScriptExecutor {
 
     // VIDEO # 37
     public static String browserType = "chrome";

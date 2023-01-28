@@ -1,18 +1,16 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
 
 
-public class R_performKeyboardEvents {
+public class _11_handleFrame {
 
-    // VIDEO # 31
-    public static String browserType = "firefox";
+    // VIDEO # 23
+    public static String browserType = "chrome";
     public static WebDriver driver;
 
 
@@ -37,28 +35,37 @@ public class R_performKeyboardEvents {
         }
 
         // GET URL
-        driver.get("https://extendsclass.com/text-compare");
-
-        // POPUP COOKIES ACCEPT
-        driver.findElement(By.xpath("//button[@aria-label='Do not consent']")).click();
+        driver.get("https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_alert");
 
         // MAXIMIZE WINDOWS
         driver.manage().window().maximize();
 
-        // TEXT AREA ELEMENT
-        WebElement sourceTextArea = driver.findElement(By.xpath("//*[@id=\"dropZone\"]/div[2]/div/div[6]/div[1]/div/div/div/div[5]/div[1]/pre/span"));
-        WebElement destinationTextArea = driver.findElement(By.xpath("//*[@id=\"dropZone2\"]/div[2]/div/div[6]/div[1]/div/div/div/div[5]/div[1]/pre/span"));
+        // POPUP COOKIES ACCEPT
+        driver.findElement(By.id("accept-choices")).click();
 
-        // OBJECT ACTIONS
-        Actions action = new Actions(driver);
+        // 1- SWITCH TO IFRAME --> BY INDEX
+        //driver.switchTo().frame(0);
 
-        // COPY / PAST ACTIONS
-        action.keyDown(sourceTextArea, Keys.COMMAND).sendKeys("a").sendKeys("c").build().perform();
-        action.keyDown(destinationTextArea, Keys.COMMAND).sendKeys("a").sendKeys("v").build().perform();
+        // 2- SWITCH TO IFRAME --> BY ID
+        //driver.switchTo().frame("iframeResult");
+
+        // 3- SWITCH TO IFRAME --> BY webelEment
+        WebElement frame1 = driver.findElement(By.id("iframeResult"));
+        driver.switchTo().frame(frame1);
+
+
+        // CLICK ON FRAME
+        driver.findElement(By.xpath("/html/body/button")).click();
+
+        // SWITCH BACK TO PARENT FRAME
+        driver.switchTo().parentFrame();
 
 
 
-        //driver.quit();
+
+
+
+       // driver.quit();
     }
 
 }

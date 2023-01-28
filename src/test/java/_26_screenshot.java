@@ -1,9 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -13,15 +10,12 @@ import java.io.IOException;
 import java.util.Date;
 
 
-public class Z_handleAuthenticationPopup {
+public class _26_screenshot {
 
-    // VIDEO # 40
+    // VIDEO # 38
     public static String browserType = "chrome";
     public static WebDriver driver;
 
-    // LOGIN VARIABLES
-    public static String username = "admin";
-    public static String password = "admin";
 
     public static void main(String[] args) throws IOException {
 
@@ -44,12 +38,30 @@ public class Z_handleAuthenticationPopup {
         }
 
 
-        // GET URL --> admin:password inside link with variables
-        driver.get("https://" + username + ":" + password + "@the-internet.herokuapp.com/basic_auth");
+        // GET URL
+        driver.get("https://extendsclass.com/text-compare");
 
+        // POPUP COOKIES ACCEPT
+        driver.findElement(By.xpath("//button[@aria-label='Do not consent']")).click();
 
         // MAXIMIZE WINDOWS
         driver.manage().window().maximize();
+
+
+        // TAKE SCREENSHOT
+        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+        // ******* TO SAVE SCREENSHOT *******
+        // Add dependency from "mvn repository" : commons io
+
+        // Tips :  create date to use in file name of the picture
+        Date currentDate = new Date();
+        String screenshotFileName = currentDate.toString().replace(" ", "-").replace(":", "-");
+
+        // SAVE METHOD & PATH
+        FileUtils.copyFile(screenshotFile, new File(".//screeshot/" + screenshotFileName + ".png"));
+
+
 
 
         //driver.quit();

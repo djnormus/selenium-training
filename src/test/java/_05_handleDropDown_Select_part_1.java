@@ -4,20 +4,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.Select;
 
-import java.util.List;
 
+public class _05_handleDropDown_Select_part_1 {
 
-public class H_handleCheckBox_scroll {
-
-    // VIDEO # 21
+    // VIDEO # 17
     public static String browserType = "chrome";
     public static WebDriver driver;
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         switch (browserType) {
             case "chrome" -> {
@@ -47,18 +45,35 @@ public class H_handleCheckBox_scroll {
         driver.findElement(By.id("CybotCookiebotDialogBodyLevelButtonCustomize")).click();
         driver.findElement(By.id("CybotCookiebotDialogBodyButtonDecline")).click();
 
-        WebElement checkBox = driver.findElement(By.id("doi0"));
+        // WEBELEMENT : SELECT
+        WebElement dropDown = driver.findElement(By.name("employees_c"));
 
-        // SCROLL --> scroll to btn
-        WebElement btn = driver.findElement(By.className("submit-box-container"));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(btn);
-        actions.perform();
+        // NEW OBJECT : SELECT
+        Select select  = new Select(dropDown);
 
-        checkBox.click();
+        // WHAT FIRST OPTION SELECTED ?
+        WebElement firstOption = select.getFirstSelectedOption();
+        System.out.println("The first selected option is : " + firstOption.getText());
 
-        List <WebElement> list = driver.findElements(By.xpath("//input[@type='checkbox']"));
-        System.out.println("Total 'check box type' are : "+ list.size());
+        // SELECT BY VALUE
+        select.selectByValue("level1");
+        Thread.sleep(2000); // WAIT IN MS
+
+        // SELECT BY VISIBLE TEXT
+        select.selectByVisibleText("101 - 250 employees");
+        Thread.sleep(2000);
+
+        // SELECT BY INDEX
+        select.selectByIndex(5);
+        Thread.sleep(2000);
+
+
+
+
+
+
+
+
 
     }
 

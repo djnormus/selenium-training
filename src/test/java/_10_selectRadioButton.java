@@ -1,17 +1,15 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
 
 
-public class R2_performKeyboardEvents {
+public class _10_selectRadioButton {
 
-    // VIDEO # 31
+    // VIDEO # 22
     public static String browserType = "chrome";
     public static WebDriver driver;
 
@@ -37,23 +35,33 @@ public class R2_performKeyboardEvents {
         }
 
         // GET URL
-        driver.get("https://www.google.fr/");
-
+        driver.get("https://www.singaporeair.com/fr_FR/fr/home#/book/bookflight");
 
         // MAXIMIZE WINDOWS
         driver.manage().window().maximize();
 
-        // COOKIES
-        driver.findElement(By.id("W0wltc")).click();
+        // POPUP COOKIES ACCEPT
+        driver.findElement(By.className("acceptEssential")).click();
 
-        // SEARCH INPUT
-        WebElement searchInput = driver.findElement(By.xpath("//input[@title='Rechercher']"));
+        WebElement radio1 = driver.findElement(By.id("bookFlights"));
+        WebElement radio2 = driver.findElement(By.id("redeemFlights"));
 
-        // KEY ENTER
-        searchInput.sendKeys("Paris" + Keys.ENTER);
+        radio2.click();
+        System.out.println("Radio 01 is selected ? : "+ radio1.isSelected());
+        System.out.println("Radio 02 is selected ? : "+ radio2.isSelected());
+
+        // HOW MANY RADIO
+        System.out.println("Nbr of radio btn : " + driver.findElements(By.xpath("//*[@name='book-flight-radio']")).size());
 
 
-        //driver.quit();
+
+
+
+
+
+
+
+
     }
 
 }

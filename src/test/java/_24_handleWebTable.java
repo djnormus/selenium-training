@@ -9,7 +9,7 @@ import org.openqa.selenium.safari.SafariDriver;
 import java.util.List;
 
 
-public class V_handleWebTable {
+public class _24_handleWebTable {
 
     // VIDEO # 36
     public static String browserType = "chrome";

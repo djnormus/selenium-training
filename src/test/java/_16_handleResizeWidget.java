@@ -1,23 +1,21 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
 
-import java.util.List;
 
+public class _16_handleResizeWidget {
 
-public class G_handleAutoSuggestionDropdown {
-
-    // VIDEO # 20
+    // VIDEO # 28
     public static String browserType = "chrome";
     public static WebDriver driver;
 
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         switch (browserType) {
             case "chrome" -> {
@@ -38,30 +36,27 @@ public class G_handleAutoSuggestionDropdown {
         }
 
         // GET URL
-        driver.get("https://www.booking.com/index.fr.html");
+        driver.get("https://jqueryui.com/resizable/");
 
         // MAXIMIZE WINDOWS
         driver.manage().window().maximize();
 
-        // POPUP COOKIES
-        driver.findElement(By.id("onetrust-reject-all-handler")).click();
-
-        WebElement myDestination = driver.findElement(By.id("ss"));
-        myDestination.sendKeys("paris");
-        Thread.sleep(2000);
-        myDestination.sendKeys(Keys.ARROW_DOWN);
-        Thread.sleep(2000);
-        myDestination.sendKeys(Keys.ENTER);
-        Thread.sleep(2000);
+        // SWITCH TO IFRAME --> BY webelEment
+        WebElement frame = driver.findElement(By.className("demo-frame"));
+        driver.switchTo().frame(frame);
+        //
+        WebElement resizer = driver.findElement(By.xpath("//div[@class='ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se']"));
 
 
+        // INSTANTIATE ACTION OBJECT
+        Actions action = new Actions(driver);
 
-
+        // DRAG&DROP
+        action.dragAndDropBy(resizer, 300, 150).perform();
 
 
 
-
-
+        //driver.quit();
     }
 
 }

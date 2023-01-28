@@ -8,10 +8,10 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
 
 
-public class N_performDragAndDrop {
+public class _18_rightClick {
 
-    // VIDEO # 27
-    public static String browserType = "firefox";
+    // VIDEO # 30
+    public static String browserType = "chrome";
     public static WebDriver driver;
 
 
@@ -36,23 +36,25 @@ public class N_performDragAndDrop {
         }
 
         // GET URL
-        driver.get("https://jqueryui.com/droppable/");
+        driver.get("https://jqueryui.com/slider/#colorpicker");
 
         // MAXIMIZE WINDOWS
         driver.manage().window().maximize();
 
-        // 3- SWITCH TO IFRAME --> BY webelEment
-        WebElement frame1 = driver.findElement(By.xpath("//iframe[@class='demo-frame'] "));
-        driver.switchTo().frame(frame1);
+        // SWITCH TO IFRAME --> BY webelEment
+        WebElement frame = driver.findElement(By.xpath("(//iframe[@class='demo-frame'])[1]"));
+        driver.switchTo().frame(frame);
 
-        WebElement drag = driver.findElement(By.id("draggable"));
-        WebElement drop = driver.findElement(By.id("droppable"));
+        //
+        WebElement rectangle = driver.findElement(By.id("swatch"));
 
         // INSTANTIATE ACTION OBJECT
         Actions action = new Actions(driver);
 
-        // DRAG & DROP
-        action.dragAndDrop(drag, drop).perform();
+        // RIGHT CLICK
+        action.contextClick(rectangle).perform();
+
+
 
         //driver.quit();
     }

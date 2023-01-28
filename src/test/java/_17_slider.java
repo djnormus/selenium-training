@@ -7,13 +7,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
 
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
+public class _17_slider {
 
-public class S_implicitWait {
-
-    // VIDEO # 33
+    // VIDEO # 29
     public static String browserType = "chrome";
     public static WebDriver driver;
 
@@ -38,27 +35,25 @@ public class S_implicitWait {
             }
         }
 
-
         // GET URL
-        driver.get("https://www.ebay.com.au/");
+        driver.get("https://jqueryui.com/slider/#colorpicker");
 
         // MAXIMIZE WINDOWS
         driver.manage().window().maximize();
 
-        // IMPLICIT WAIT
-        // driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); // UNDER SELENIUM V4
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // FROM SELENIUM V4
+        // SWITCH TO IFRAME --> BY webelEment
+        WebElement frame = driver.findElement(By.xpath("(//iframe[@class='demo-frame'])[1]"));
+        driver.switchTo().frame(frame);
 
-        // POPUP COOKIES ACCEPT
-        //driver.findElement(By.id("gdpr-banner-decline")).click();
+        //
+        WebElement redSlider = driver.findElement(By.xpath("//div[@id='red']//span[@class='ui-slider-handle ui-corner-all ui-state-default']"));
 
-        WebElement element = driver.findElement(By.xpath("//body/div[@id='mainContent']/div[@class='hl-cat-nav']/ul[@class='hl-cat-nav__container']/li[3]/a[1]"));
 
         // INSTANTIATE ACTION OBJECT
         Actions action = new Actions(driver);
-        action.moveToElement(element).perform();
 
-        driver.findElement(By.xpath("//a[normalize-space()='Computer Graphics & Video Cards']")).click();
+        // DRAG&DROP
+        action.dragAndDropBy(redSlider, -120, 0).perform();
 
 
 

@@ -8,7 +8,7 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.locators.RelativeLocator;
 
 
-public class A_relativeLocator {
+public class _01_relativeLocator {
 
     public static String browserType = "chrome";
     public static WebDriver driver;

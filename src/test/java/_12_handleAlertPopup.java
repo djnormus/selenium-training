@@ -7,7 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 
-public class K_handleAlertPopup {
+public class _12_handleAlertPopup {
 
     // VIDEO # 24
     public static String browserType = "chrome";

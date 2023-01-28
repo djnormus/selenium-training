@@ -7,10 +7,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
 
+import java.util.List;
 
-public class P_slider {
 
-    // VIDEO # 29
+public class _09_handleCheckBox_scroll {
+
+    // VIDEO # 21
     public static String browserType = "chrome";
     public static WebDriver driver;
 
@@ -36,28 +38,28 @@ public class P_slider {
         }
 
         // GET URL
-        driver.get("https://jqueryui.com/slider/#colorpicker");
+        driver.get("https://www.sugarcrm.com/au/request-demo/");
 
         // MAXIMIZE WINDOWS
         driver.manage().window().maximize();
 
-        // SWITCH TO IFRAME --> BY webelEment
-        WebElement frame = driver.findElement(By.xpath("(//iframe[@class='demo-frame'])[1]"));
-        driver.switchTo().frame(frame);
+        // POPUP COOKIES ACCEPT
+        driver.findElement(By.id("CybotCookiebotDialogBodyLevelButtonCustomize")).click();
+        driver.findElement(By.id("CybotCookiebotDialogBodyButtonDecline")).click();
 
-        //
-        WebElement redSlider = driver.findElement(By.xpath("//div[@id='red']//span[@class='ui-slider-handle ui-corner-all ui-state-default']"));
+        WebElement checkBox = driver.findElement(By.id("doi0"));
 
+        // SCROLL --> scroll to btn
+        WebElement btn = driver.findElement(By.className("submit-box-container"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(btn);
+        actions.perform();
 
-        // INSTANTIATE ACTION OBJECT
-        Actions action = new Actions(driver);
+        checkBox.click();
 
-        // DRAG&DROP
-        action.dragAndDropBy(redSlider, -120, 0).perform();
+        List <WebElement> list = driver.findElements(By.xpath("//input[@type='checkbox']"));
+        System.out.println("Total 'check box type' are : "+ list.size());
 
-
-
-        //driver.quit();
     }
 
 }

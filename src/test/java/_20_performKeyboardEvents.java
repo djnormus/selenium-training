@@ -1,23 +1,22 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
 
+public class _20_performKeyboardEvents {
 
-public class X_screenshot {
-
-    // VIDEO # 38
-    public static String browserType = "chrome";
+    // VIDEO # 31
+    public static String browserType = "firefox";
     public static WebDriver driver;
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         switch (browserType) {
             case "chrome" -> {
@@ -37,7 +36,6 @@ public class X_screenshot {
             }
         }
 
-
         // GET URL
         driver.get("https://extendsclass.com/text-compare");
 
@@ -47,20 +45,16 @@ public class X_screenshot {
         // MAXIMIZE WINDOWS
         driver.manage().window().maximize();
 
+        // TEXT AREA ELEMENT
+        WebElement sourceTextArea = driver.findElement(By.xpath("//*[@id=\"dropZone\"]/div[2]/div/div[6]/div[1]/div/div/div/div[5]/div[1]/pre/span"));
+        WebElement destinationTextArea = driver.findElement(By.xpath("//*[@id=\"dropZone2\"]/div[2]/div/div[6]/div[1]/div/div/div/div[5]/div[1]/pre/span"));
 
-        // TAKE SCREENSHOT
-        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        // OBJECT ACTIONS
+        Actions action = new Actions(driver);
 
-        // ******* TO SAVE SCREENSHOT *******
-        // Add dependency from "mvn repository" : commons io
-
-        // Tips :  create date to use in file name of the picture
-        Date currentDate = new Date();
-        String screenshotFileName = currentDate.toString().replace(" ", "-").replace(":", "-");
-
-        // SAVE METHOD & PATH
-        FileUtils.copyFile(screenshotFile, new File(".//screeshot/" + screenshotFileName + ".png"));
-
+        // COPY / PAST ACTIONS
+        action.keyDown(sourceTextArea, Keys.COMMAND).sendKeys("a").sendKeys("c").build().perform();
+        action.keyDown(destinationTextArea, Keys.COMMAND).sendKeys("a").sendKeys("v").build().perform();
 
 
 

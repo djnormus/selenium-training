@@ -5,12 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
 
-public class F_printAll_LinkOfWebPage {
+public class _07_printAll_LinkOfWebPage {
 
     // VIDEO # 19
     public static String browserType = "chrome";

@@ -9,10 +9,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 
-import java.io.IOException;
 
-
-public class Y_handleSSLError {
+public class _27_handleSSLError {
 
     // VIDEO # 39
     public static String browserType = "firefox";

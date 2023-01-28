@@ -1,21 +1,23 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
 
+import java.io.IOException;
 
-public class Q_rightClick {
 
-    // VIDEO # 30
+public class _28_handleAuthenticationPopup {
+
+    // VIDEO # 40
     public static String browserType = "chrome";
     public static WebDriver driver;
 
+    // LOGIN VARIABLES
+    public static String username = "admin";
+    public static String password = "admin";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         switch (browserType) {
             case "chrome" -> {
@@ -35,25 +37,13 @@ public class Q_rightClick {
             }
         }
 
-        // GET URL
-        driver.get("https://jqueryui.com/slider/#colorpicker");
+
+        // GET URL --> admin:password inside link with variables
+        driver.get("https://" + username + ":" + password + "@the-internet.herokuapp.com/basic_auth");
+
 
         // MAXIMIZE WINDOWS
         driver.manage().window().maximize();
-
-        // SWITCH TO IFRAME --> BY webelEment
-        WebElement frame = driver.findElement(By.xpath("(//iframe[@class='demo-frame'])[1]"));
-        driver.switchTo().frame(frame);
-
-        //
-        WebElement rectangle = driver.findElement(By.id("swatch"));
-
-        // INSTANTIATE ACTION OBJECT
-        Actions action = new Actions(driver);
-
-        // RIGHT CLICK
-        action.contextClick(rectangle).perform();
-
 
 
         //driver.quit();

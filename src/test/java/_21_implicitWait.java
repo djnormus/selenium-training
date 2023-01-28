@@ -1,12 +1,18 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
 
+import java.time.Duration;
 
-public class B_basicMethods_1 {
 
+public class _21_implicitWait {
+
+    // VIDEO # 33
     public static String browserType = "chrome";
     public static WebDriver driver;
 
@@ -31,39 +37,31 @@ public class B_basicMethods_1 {
             }
         }
 
+
         // GET URL
-        driver.get("https://www.saucedemo.com/");
+        driver.get("https://www.ebay.com.au/");
 
         // MAXIMIZE WINDOWS
         driver.manage().window().maximize();
 
-        // GET URL
-        String currentUrl = driver.getCurrentUrl();
-        System.out.println("page URL is : " + currentUrl);
+        // IMPLICIT WAIT
+        // driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); // UNDER SELENIUM V4
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // FROM SELENIUM V4
 
-        // GET TITLE
-        String title = driver.getTitle();
-        System.out.println("Title is : " + title);
+        // POPUP COOKIES ACCEPT
+        //driver.findElement(By.id("gdpr-banner-decline")).click();
 
-        // GET PAGE SOURCE
-        String pageSource = driver.getPageSource();
-        System.out.println("page source is : " + pageSource);
+        WebElement element = driver.findElement(By.xpath("//body/div[@id='mainContent']/div[@class='hl-cat-nav']/ul[@class='hl-cat-nav__container']/li[3]/a[1]"));
 
-        // NAVIGATE
-        // navigate to de la 1ere page dans get(url) vers navigate().to("")
-        driver.navigate().to("https://www.google.fr/");
+        // INSTANTIATE ACTION OBJECT
+        Actions action = new Actions(driver);
+        action.moveToElement(element).perform();
 
-        // QUIT
-        // Quits this driver, closing every associated window
-        // driver.quit();
-
-        // CLOSE
-        // Close the current windows, quitting the browser if it's the last window currently open
-        // driver.close();
+        driver.findElement(By.xpath("//a[normalize-space()='Computer Graphics & Video Cards']")).click();
 
 
 
-
+        //driver.quit();
     }
 
 }

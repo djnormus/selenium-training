@@ -1,7 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -10,7 +9,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 
-public class L_handleMultipleWindows {
+public class _13_handleMultipleWindows {
 
     // VIDEO # 25
     public static String browserType = "firefox";

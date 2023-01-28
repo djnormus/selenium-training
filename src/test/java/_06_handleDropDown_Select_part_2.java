@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 
 
-public class E_handleDropDown_Select_part_2 {
+public class _06_handleDropDown_Select_part_2 {
 
     // VIDEO # 18
     public static String browserType = "chrome";
